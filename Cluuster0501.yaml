@@ -1,0 +1,28 @@
+apiVersion: eksctl.io/v1
+kind: ClusterConfig
+
+metadata:
+  name  : DE-sandbox 
+  region: us-west-1
+
+nodeGroups:
+  - name             : worker
+    instanceType     : t3.small
+    desiredCapacity  : 1
+    privateNetworking: true  
+    
+---
+apiVersion : v1
+kind: Pod
+metadata:
+  name: demo-pod
+  labels:
+    env  : work	
+    owner: Dima
+spec:
+  containers:
+    - name : container-dima
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+
